@@ -85,6 +85,9 @@ bool InpaintFilter<T>::update(const T & mapIn, T & mapOut)
   mapOut.add("inpaint_mask", 0.0);
 
   mapOut.setBasicLayers(std::vector<std::string>());
+
+  mapOut.convertToDefaultStartIndex();
+
   for (grid_map::GridMapIterator iterator(mapOut); !iterator.isPastEnd(); ++iterator) {
     if (!mapOut.isValid(*iterator, inputLayer_)) {
       mapOut.at("inpaint_mask", *iterator) = 1.0;
